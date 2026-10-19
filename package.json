@@ -4,6 +4,8 @@
   "description": "",
   "main": "sever.js",
   "scripts": {
+    "dev": "docker compose up -d --wait mysql && npm start",
+    "start": "node sever.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f6f4ef">
+	<title>Stato ordini | Baretto</title>
+	<link rel="stylesheet" href="/ordini.css">
+	<script src="/ordini.js" defer></script>
+</head>
+<body>
+	<main class="orders-page">
+		<header class="orders-header">
+			<a class="brand" href="/" aria-label="Baretto, pannello amministrativo">
+				<span class="brand-mark" aria-hidden="true">b.</span>
+				<span>Baretto<small>AVANZAMENTO ORDINI</small></span>
+			</a>
+			<div class="header-status">
+				<span class="live-indicator" id="live-indicator"></span>
+				<span id="update-label" role="status" aria-live="polite">Connessione...</span>
+			</div>
+		</header>
+
+		<section class="page-intro">
+			<div>
+				<p class="eyebrow">AGGIORNAMENTO AUTOMATICO</p>
+				<h1>Stato degli ordini</h1>
+				<p class="subtitle">Una vista dedicata all’avanzamento delle comande.</p>
+			</div>
+			<a class="back-link" href="/" target="_blank" rel="noopener noreferrer">Apri il pannello admin <span aria-hidden="true">↗</span></a>
+		</section>
+
+		<section class="status-summary" aria-label="Riepilogo ordini">
+			<article class="summary-card waiting">
+				<span class="summary-icon" aria-hidden="true">◷</span>
+				<div><span>In attesa</span><strong id="waiting-count">—</strong></div>
+			</article>
+			<article class="summary-card preparing">
+				<span class="summary-icon" aria-hidden="true">◌</span>
+				<div><span>In preparazione</span><strong id="preparing-count">—</strong></div>
+			</article>
+			<article class="summary-card completed">
+				<span class="summary-icon" aria-hidden="true">✓</span>
+				<div><span>Completati</span><strong id="completed-count">—</strong></div>
+			</article>
+		</section>
+
+		<section class="orders-panel" aria-labelledby="orders-heading">
+			<div class="panel-heading">
+				<div>
+					<p class="eyebrow">ULTIMI 100 ORDINI</p>
+					<h2 id="orders-heading">Avanzamento</h2>
+				</div>
+				<button class="refresh-button" id="refresh-button" type="button"><span aria-hidden="true">↻</span> Aggiorna</button>
+			</div>
+			<div class="orders-list" id="orders-list" aria-live="polite">
+				<p class="empty-message">Caricamento ordini...</p>
+			</div>
+		</section>
+		<p class="error-message" id="error-message" role="alert" hidden></p>
+	</main>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f5f2ec">
+	<title>Admin | Baretto</title>
+	<link rel="stylesheet" href="/style.css">
+	<script src="/admin.js" defer></script>
+</head>
+<body>
+	<div class="app-shell">
+		<aside class="sidebar">
+			<a class="brand" href="/" aria-label="Baretto, pagina iniziale">
+				<span class="brand-mark" aria-hidden="true">b.</span>
+				<span>Baretto<small>GESTIONE LOCALE</small></span>
+			</a>
+			<div class="sidebar-label">MENU PRINCIPALE</div>
+			<a class="nav-link active" href="#dashboard"><span aria-hidden="true">▦</span> Panoramica</a>
+			<a class="nav-link" href="#prodotti"><span aria-hidden="true">☕</span> Prodotti</a>
+			<a class="nav-link" href="#personale"><span aria-hidden="true">♙</span> Personale</a>
+			<a class="nav-link" href="#ordini"><span aria-hidden="true">▤</span> Ordini</a>
+			<div class="sidebar-footer">
+				<span class="online-dot"></span>
+				<span>Database <strong id="connection-label">connessione...</strong></span>
+			</div>
+		</aside>
+
+		<main class="main-content">
+			<header class="topbar">
+				<div class="breadcrumb">Baretto <span>/</span> Amministrazione</div>
+				<div class="topbar-actions">
+					<a class="button button-light" href="/menu.html" target="_blank" rel="noopener noreferrer">Menu cliente <span aria-hidden="true">↗</span></a>
+					<a class="button button-light" href="/ordini.html" target="_blank" rel="noopener noreferrer">Stato ordini <span aria-hidden="true">↗</span></a>
+					<div class="admin-chip"><span class="avatar">A</span><span>Amministratore</span></div>
+				</div>
+			</header>
+
+			<section class="page-heading" id="dashboard">
+				<div>
+					<p class="eyebrow">IL TUO LOCALE, SOTTO CONTROLLO</p>
+					<h1>Buongiorno, admin <span aria-hidden="true">☀</span></h1>
+					<p class="subtitle">Gestisci prodotti, personale e ordini in un unico posto.</p>
+				</div>
+				<button class="button button-light" id="refresh-button" type="button"><span aria-hidden="true">↻</span> Aggiorna dati</button>
+			</section>
+
+			<div class="notice" role="note">
+				<span aria-hidden="true">ⓘ</span>
+				<span>Area amministrativa senza autenticazione: usala solo in un ambiente fidato.</span>
+			</div>
+
+			<section class="stats-grid" aria-label="Riepilogo database">
+				<article class="stat-card">
+					<div class="stat-icon icon-coffee" aria-hidden="true">☕</div>
+					<div><p>Prodotti a catalogo</p><strong id="products-count">—</strong></div>
+					<span class="stat-caption">nel menu</span>
+				</article>
+				<article class="stat-card">
+					<div class="stat-icon icon-team" aria-hidden="true">♙</div>
+					<div><p>Persone in squadra</p><strong id="employees-count">—</strong></div>
+					<span class="stat-caption">nel team</span>
+				</article>
+				<article class="stat-card">
+					<div class="stat-icon icon-orders" aria-hidden="true">▤</div>
+					<div><p>Ordini registrati</p><strong id="orders-count">—</strong></div>
+					<span class="stat-caption">ultimi 50</span>
+				</article>
+			</section>
+
+			<section class="management-grid" aria-label="Inserimento dati">
+				<article class="panel" id="prodotti">
+					<div class="panel-heading">
+						<div><span class="section-icon" aria-hidden="true">☕</span><div><h2>Nuovo prodotto</h2><p>Aggiungi una voce al menu</p></div></div>
+						<span class="step-number">01</span>
+					</div>
+					<form id="product-form" class="form-grid">
+						<label class="field field-wide">Nome prodotto<input name="nome" type="text" maxlength="150" placeholder="Es. Espresso doppio" required></label>
+						<label class="field field-wide">Descrizione<textarea name="descrizione" rows="2" placeholder="Ingredienti o dettagli utili"></textarea></label>
+						<label class="field field-wide">Immagine prodotto <span class="optional">URL http/https, facoltativo</span><input name="immagine_url" type="url" maxlength="2048" placeholder="https://..." ></label>
+						<label class="field">Prezzo (€)<input name="prezzo" type="number" min="0" max="99999999.99" step="0.01" placeholder="0,00" required></label>
+						<label class="check-field"><input name="disponibile" type="checkbox" checked><span>Disponibile</span></label>
+						<button class="button button-primary field-wide" type="submit">Aggiungi prodotto <span aria-hidden="true">→</span></button>
+					</form>
+				</article>
+
+				<article class="panel" id="personale">
+					<div class="panel-heading">
+						<div><span class="section-icon icon-person" aria-hidden="true">♙</span><div><h2>Nuovo membro</h2><p>Inserisci una persona nel team</p></div></div>
+						<span class="step-number">02</span>
+					</div>
+					<form id="employee-form" class="form-grid">
+						<label class="field">Nome<input name="nome" type="text" maxlength="100" placeholder="Es. Giulia" required></label>
+						<label class="field">Cognome<input name="cognome" type="text" maxlength="100" placeholder="Es. Moretti" required></label>
+						<label class="field">Ruolo<input name="ruolo" type="text" maxlength="100" placeholder="Es. Barista" required></label>
+						<label class="field">Telefono <span class="optional">(facoltativo)</span><input name="telefono" type="tel" maxlength="30" placeholder="+39 333 000 0000"></label>
+						<label class="field field-wide">Email<input name="email" type="email" maxlength="255" placeholder="nome@barettocafe.it" required></label>
+						<button class="button button-primary field-wide" type="submit">Aggiungi al team <span aria-hidden="true">→</span></button>
+					</form>
+				</article>
+
+				<article class="panel panel-order" id="ordini">
+					<div class="panel-heading">
+						<div><span class="section-icon icon-order" aria-hidden="true">▤</span><div><h2>Registra un ordine</h2><p>Seleziona un prodotto e chi lo serve</p></div></div>
+						<span class="step-number">03</span>
+					</div>
+					<form id="order-form" class="form-grid">
+						<label class="field">Prodotto<select name="prodotto_id" id="order-product" required><option value="">Seleziona un prodotto</option></select></label>
+						<label class="field">Gestito da<select name="dipendente_id" id="order-employee" required><option value="">Seleziona una persona</option></select></label>
+						<label class="field">Quantità<input name="quantita" type="number" min="1" max="100000" step="1" value="1" required></label>
+						<label class="field">Totale stimato<strong class="total-preview" id="order-total">Seleziona un prodotto</strong></label>
+						<button class="button button-primary field-wide" type="submit">Registra ordine <span aria-hidden="true">→</span></button>
+					</form>
+				</article>
+			</section>
+
+			<section class="records-panel panel" aria-labelledby="records-heading">
+				<div class="records-heading">
+					<div><p class="eyebrow">ATTIVITÀ RECENTE</p><h2 id="records-heading">Dati del locale</h2></div>
+					<span class="records-badge">Aggiornato in tempo reale</span>
+				</div>
+				<div class="records-tabs" role="tablist" aria-label="Tabelle database">
+					<button class="records-tab active" type="button" role="tab" aria-selected="true" aria-controls="products-records" data-tab="products-records">Prodotti <span id="products-tab-count">0</span></button>
+					<button class="records-tab" type="button" role="tab" aria-selected="false" aria-controls="employees-records" data-tab="employees-records">Personale <span id="employees-tab-count">0</span></button>
+					<button class="records-tab" type="button" role="tab" aria-selected="false" aria-controls="orders-records" data-tab="orders-records">Ordini <span id="orders-tab-count">0</span></button>
+				</div>
+				<div class="table-wrap active" id="products-records" role="tabpanel">
+					<table><thead><tr><th>Prodotto</th><th>Prezzo</th><th>Disponibilità</th></tr></thead><tbody id="products-table"></tbody></table>
+				</div>
+				<div class="table-wrap" id="employees-records" role="tabpanel" hidden>
+					<table><thead><tr><th>Nome</th><th>Ruolo</th><th>Email</th></tr></thead><tbody id="employees-table"></tbody></table>
+				</div>
+				<div class="table-wrap" id="orders-records" role="tabpanel" hidden>
+					<table><thead><tr><th>Ordine</th><th>Prodotto</th><th>Gestito da</th><th>Quantità</th><th>Totale</th><th>Stato</th></tr></thead><tbody id="orders-table"></tbody></table>
+				</div>
+			</section>
+
+			<footer class="page-footer">Baretto Admin <span>·</span> Pannello di gestione locale</footer>
+		</main>
+	</div>
+	<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

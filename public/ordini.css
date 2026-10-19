@@ -1,0 +1,90 @@
+:root {
+	font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	color: #29271f;
+	background: #f6f4ef;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	--ink: #29271f;
+	--muted: #87847b;
+	--line: #e9e6de;
+	--green: #376c50;
+}
+
+* { box-sizing: border-box; }
+body { min-width: 320px; margin: 0; }
+a, button { font: inherit; }
+.orders-page { width: min(1080px, calc(100% - 48px)); min-height: 100vh; padding: 0 0 40px; margin: 0 auto; }
+.orders-header { display: flex; min-height: 76px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 11px; color: var(--ink); font-size: 18px; font-weight: 750; letter-spacing: -.5px; text-decoration: none; }
+.brand-mark { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 12px; background: var(--green); color: #fff; font-size: 23px; font-weight: 700; }
+.brand small { display: block; margin-top: 3px; color: #a09d93; font-size: 8px; font-weight: 750; letter-spacing: 1.35px; }
+.header-status { display: flex; align-items: center; gap: 9px; color: #77746c; font-size: 11px; }
+.live-indicator { width: 8px; height: 8px; border-radius: 50%; background: #50a774; box-shadow: 0 0 0 3px #e7f3e9; }
+.live-indicator.offline { background: #bd5b51; box-shadow: 0 0 0 3px #f7e9e7; }
+.page-intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding: 38px 0 23px; }
+.eyebrow { margin: 0 0 7px; color: #939087; font-size: 9px; font-weight: 750; letter-spacing: 1.45px; }
+h1, h2, p { margin-top: 0; }
+h1 { margin-bottom: 6px; font-size: clamp(26px, 4vw, 36px); font-weight: 720; letter-spacing: -1.2px; }
+.subtitle { margin: 0; color: #8e8a81; font-size: 12px; }
+.back-link { color: var(--green); font-size: 11px; font-weight: 650; text-decoration: none; white-space: nowrap; }
+.back-link:hover { text-decoration: underline; }
+.status-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+.summary-card { display: flex; min-height: 86px; align-items: center; gap: 13px; padding: 16px; border: 1px solid #ebe8e0; border-radius: 11px; background: #fff; }
+.summary-icon { display: grid; width: 40px; height: 40px; place-items: center; border-radius: 11px; font-size: 20px; }
+.summary-card div { display: grid; gap: 5px; }
+.summary-card div span { color: #88857d; font-size: 10px; }
+.summary-card strong { font-size: 22px; line-height: 1; }
+.waiting .summary-icon { background: #fff5e7; color: #aa7d3e; }
+.preparing .summary-icon { background: #eef0f7; color: #6774a4; }
+.completed .summary-icon { background: #edf5ee; color: #568064; }
+.orders-panel { overflow: hidden; border: 1px solid #ebe8e0; border-radius: 12px; background: #fff; }
+.panel-heading { display: flex; align-items: center; justify-content: space-between; padding: 19px 21px; border-bottom: 1px solid var(--line); }
+.panel-heading .eyebrow { margin-bottom: 4px; }
+.panel-heading h2 { margin: 0; font-size: 16px; letter-spacing: -.3px; }
+.refresh-button { min-height: 35px; padding: 0 11px; border: 1px solid #e7e4dc; border-radius: 8px; background: #fff; color: #5f5c54; font-size: 10px; font-weight: 650; }
+.refresh-button:hover { background: #faf9f6; }
+.refresh-button:focus-visible, .back-link:focus-visible { outline: 3px solid #aed0b4; outline-offset: 2px; }
+.orders-list { display: grid; }
+.order-row { display: grid; grid-template-columns: minmax(180px, 1.4fr) minmax(120px, 1fr) minmax(170px, 1fr); align-items: center; gap: 20px; padding: 15px 21px; border-bottom: 1px solid #f0eee8; }
+.order-row:last-child { border-bottom: 0; }
+.order-primary { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.order-number { display: grid; width: 38px; height: 38px; flex: 0 0 auto; place-items: center; border-radius: 10px; background: #f4f2ed; color: #77746c; font-size: 11px; font-weight: 750; }
+.order-product { overflow: hidden; margin: 0 0 4px; color: #33312b; font-size: 12px; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.order-quantity { margin: 0; color: #99958c; font-size: 10px; }
+.progress-track { height: 5px; overflow: hidden; border-radius: 5px; background: #efede7; }
+.progress-fill { height: 100%; border-radius: inherit; background: #d6a44e; transition: width .2s ease; }
+.progress-fill.preparing { width: 66%; background: #7884b1; }
+.progress-fill.completed { width: 100%; background: #57916a; }
+.progress-fill.waiting { width: 33%; }
+.progress-fill.unknown { width: 10%; background: #aaa69d; }
+.order-progress-label { margin-top: 6px; color: #99958c; font-size: 9px; text-transform: uppercase; }
+.status-badge { justify-self: end; padding: 7px 10px; border-radius: 20px; font-size: 10px; font-weight: 650; white-space: nowrap; }
+.status-badge.waiting { background: #fff5e7; color: #aa7d3e; }
+.status-badge.preparing { background: #eef0f7; color: #6774a4; }
+.status-badge.completed { background: #edf5ee; color: #568064; }
+.status-badge.unknown { background: #f3f1ed; color: #77746c; }
+.empty-message, .error-message { padding: 26px 20px; color: #99958c; font-size: 11px; text-align: center; }
+.error-message { margin: 14px 0 0; border: 1px solid #f0dbd7; border-radius: 9px; background: #fff6f4; color: #963f37; }
+
+@media (max-width: 640px) {
+	.orders-page { width: min(100% - 30px, 1080px); }
+	.orders-header { min-height: 64px; }
+	.brand { font-size: 16px; }
+	.brand-mark { width: 34px; height: 34px; }
+	.page-intro { align-items: flex-start; flex-direction: column; padding: 29px 0 18px; }
+	.status-summary { gap: 8px; }
+	.summary-card { min-height: 76px; flex-direction: column; align-items: flex-start; gap: 6px; padding: 10px; }
+	.summary-icon { width: 28px; height: 28px; border-radius: 8px; font-size: 15px; }
+	.summary-card div { display: flex; width: 100%; align-items: baseline; justify-content: space-between; gap: 3px; }
+	.summary-card div span { font-size: 8px; }
+	.summary-card strong { font-size: 18px; }
+	.order-row { grid-template-columns: minmax(0, 1fr) auto; gap: 10px 12px; padding: 13px; }
+	.order-primary { grid-column: 1 / -1; }
+	.order-progress { grid-column: 1; }
+	.status-badge { grid-column: 2; grid-row: 2; }
+	.panel-heading { padding: 16px 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+}

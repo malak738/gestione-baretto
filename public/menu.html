@@ -1,0 +1,73 @@
+<!DOCTYPE  html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#f5f3ec">
+	<title>Menu | Baretto</title>
+	<link rel="stylesheet" href="/menu.css">
+	<script src="/menu.js" defer></script>
+</head>
+<body>
+	<header class="site-header">
+		<a class="brand" href="/menu.html" aria-label="Baretto, menu">
+			<span class="brand-mark">b.</span>
+			<span>Baretto<small>CAFFÈ · CUCINA · INCONTRI</small></span>
+		</a>
+		<a class="header-cart" href="#carrello" aria-label="Vai al carrello">
+			<span aria-hidden="true">▤</span> <span>Il tuo ordine</span><b id="header-count">0</b>
+		</a>
+	</header>
+
+	<main>
+		<section class="hero">
+			<div class="hero-copy">
+				<p class="eyebrow">FATTO CON CURA, QUI VICINO</p>
+				<h1>Una pausa,<br><em>fatta bene.</em></h1>
+				<p class="hero-subtitle">Scegli dal menu, ordina al tuo ritmo.<br>Prepariamo tutto al momento.</p>
+				<a class="hero-link" href="#menu">Scopri il menu <span aria-hidden="true">↓</span></a>
+			</div>
+			<div class="hero-photo" role="img" aria-label="Caffè e colazione serviti al Baretto"></div>
+			<div class="hero-note"><span>OGNI GIORNO</span><strong>Una cosa buona<br>alla volta.</strong></div>
+		</section>
+
+		<div class="shop-layout" id="menu">
+			<section class="menu-section" aria-labelledby="menu-heading">
+				<div class="menu-intro">
+					<div><p class="eyebrow">ORDINA AL BANCO</p><h2 id="menu-heading">Il menu</h2></div>
+					<p>Fresco, semplice, preparato<br>con ingredienti scelti.</p>
+				</div>
+				<nav class="category-tabs" aria-label="Filtra il menu">
+					<button class="category-tab active" type="button" data-category="tutti" aria-pressed="true">Tutto</button>
+					<button class="category-tab" type="button" data-category="caffetteria" aria-pressed="false">Caffetteria</button>
+					<button class="category-tab" type="button" data-category="cucina" aria-pressed="false">Cucina</button>
+					<button class="category-tab" type="button" data-category="aperitivo" aria-pressed="false">Aperitivo</button>
+				</nav>
+				<p class="menu-message" id="menu-message" role="status" hidden></p>
+				<div class="product-grid" id="product-grid" aria-live="polite"></div>
+			</section>
+
+		<aside class="cart-panel" id="carrello" aria-labelledby="cart-heading">
+			<div class="cart-heading"><div><p class="eyebrow">QUANDO HAI SCELTO</p><h2 id="cart-heading">Il tuo ordine</h2></div><span class="cart-count" id="cart-count">0</span></div>
+			<div class="cart-items" id="cart-items" aria-live="polite"><p class="cart-empty">Il carrello è vuoto.<br>Comincia da qualcosa di buono.</p></div>
+			<div class="cart-total"><span>Totale</span><strong id="cart-total">0,00&nbsp;€</strong></div>
+			<form id="checkout-form" class="checkout-form">
+				<label class="checkout-field">A nome di<input name="cliente_nome" type="text" maxlength="100" autocomplete="given-name" placeholder="Il tuo nome" required></label>
+				<fieldset class="payment-field">
+					<legend>Come preferisci pagare al ritiro?</legend>
+					<label class="payment-option"><input type="radio" name="metodo_pagamento" value="contanti" checked><span aria-hidden="true">◉</span> Contanti</label>
+					<label class="payment-option"><input type="radio" name="metodo_pagamento" value="carta"><span aria-hidden="true">▣</span> Carta</label>
+				</fieldset>
+				<button class="checkout-button" type="submit" disabled>Conferma ordine <span aria-hidden="true">→</span></button>
+				<p class="checkout-note">Pagherai al ritiro, nessun pagamento online.</p>
+			</form>
+			<p class="order-feedback" id="order-feedback" role="status" aria-live="polite" hidden></p>
+		</aside>
+		<div class="mobile-order-bar"><a href="#carrello"><span id="mobile-count">0 prodotti</span><strong id="mobile-total">0,00&nbsp;€</strong><span>Vai al carrello ↑</span></a></div>
+		<p class="page-error" id="page-error" role="alert" hidden></p>
+	</div>
+	</main>
+
+	<footer class="site-footer"><span>Baretto</span><span>Fatto qui, con calma.</span><a href="/ordini.html">Segui gli ordini <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>
